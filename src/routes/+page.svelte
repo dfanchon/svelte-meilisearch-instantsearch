@@ -23,12 +23,12 @@
 
   import Panel from "./Panel.svelte";
 
-  const SEARCH_ENDPOINT = import.meta.env.VITE_SEARCH_ENDPOINT;
-  const MEILI_MASTER_KEY = import.meta.env.VITE_MEILI_MASTER_KEY;
+  const SEARCH_ENDPOINT = import.meta.env.VITE_MEILISEARCH_ENDPOINT;
+  const MEILI_MASTER_KEY = import.meta.env.VITE_MEILISEARCH_MASTER_KEY;
 
   const { searchClient } = instantMeiliSearch(
-  SEARCH_ENDPOINT,
-  MEILI_MASTER_KEY
+  'https://ms-adf78ae33284-106.lon.meilisearch.io',
+  'a63da4928426f12639e19d62886f621130f3fa9ff3c7534c5d179f0f51c4f303'
 );
 </script>
 
@@ -36,25 +36,28 @@
   <title>svelte-algolia-instantsearch | Demo</title>
 </svelte:head>
 
-<InstantSearch indexName="drills" routing {searchClient}>
+<InstantSearch indexName="steam-videogames" routing {searchClient}>
   <div class="Container">
     <div>
       <Panel header="Brands"
         ><RefinementList
-          attribute="userName"
+          attribute="genres"
           searchable
-          searchablePlaceholder="Search author"
+          searchablePlaceholder="Genres"
           showMore
         /></Panel
       >
-      <Panel header="Tags">
+      <Panel header="Categories">
         <RefinementList
-          attribute="tags"
+          attribute="categories"
           showMore
         />
       </Panel>
-      <Panel header="isPublic">
-        <ToggleRefinement attribute="isPublic" label="is Public" />
+      <Panel header="Platform">
+        <RefinementList
+          attribute="platforms"
+          showMore
+        />
       </Panel>
     </div>
 

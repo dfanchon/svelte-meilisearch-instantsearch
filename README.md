@@ -1,8 +1,8 @@
 # svelte-algolia-instantsearch
 
-This library is a **community developed** wrapper around [instantsearch.js](https://github.com/algolia/instantsearch) for Svelte. 
+This library is a **community developed** wrapper around [instantsearch.js](https://github.com/algolia/instantsearch) for Svelte and Meilisearch, initially forked from [svelte-algolia-instantsearch](https://github.com/aymeric-giraudet/svelte-algolia-instantsearch) 
 
-**It is not affiliated nor backed by Algolia.**
+**It is not affiliated nor backed by Meilisearch.**
 
 It is meant to be an equivalent of [react-instantsearch-hooks-web](https://github.com/algolia/instantsearch/tree/master/packages/react-instantsearch-hooks-web) for Svelte, exposing a similar API.
 
@@ -12,9 +12,9 @@ It is meant to be an equivalent of [react-instantsearch-hooks-web](https://githu
 ## Installation
 
 ```sh
-yarn add svelte-algolia-instantsearch algoliasearch
+yarn add svelte-meilisearch-instantsearch algoliasearch
 # or
-npm install svelte-algolia-instantsearch algoliasearch
+npm install svelte-meilisearch-instantsearch algoliasearch
 ```
 
 ## Basic usage
@@ -28,9 +28,14 @@ npm install svelte-algolia-instantsearch algoliasearch
     Pagination,
     HitsPerPage,
   } from "svelte-algolia-instantsearch";
-  import algoliasearch from "algoliasearch/lite";
+  import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
 
-  const searchClient = algoliasearch("<YOUR_API_KEY>", "<YOUR_SEARCH_KEY>");
+  import Panel from "./Panel.svelte";
+
+  const { searchClient } = instantMeiliSearch(
+    'https://ms-adf78ae33284-106.lon.meilisearch.io',
+    'a63da4928426f12639e19d62886f621130f3fa9ff3c7534c5d179f0f51c4f303'
+  );
 </script>
 
 <InstantSearch indexName="<YOUR_INDEX_NAME>" routing {searchClient}>
