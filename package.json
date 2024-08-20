@@ -1,12 +1,11 @@
 {
-  "name": "svelte-algolia-instantsearch",
-  "version": "0.12.1",
+  "name": "svelte-meilisearch-instantsearch",
+  "version": "0.1",
   "license": "MIT",
-  "description": "Svelte wrapper for Algolia InstantSearch",
-  "repository": "aymeric-giraudet/svelte-algolia-instantsearch",
+  "description": "Svelte wrapper for Meilisearch InstantSearch",
   "keywords": [
     "svelte",
-    "algolia",
+    "meilisearch",
     "instantsearch",
     "search",
     "instantsearch.js"
@@ -29,33 +28,27 @@
     "release": "shipjs prepare"
   },
   "dependencies": {
+    "@meilisearch/instant-meilisearch": "^0.19.3",
     "algoliasearch-helper": "3.14.0",
     "instantsearch.js": "4.56.9"
   },
   "devDependencies": {
     "@sveltejs/adapter-vercel": "3.0.3",
-    "@sveltejs/kit": "1.24.0",
+    "@sveltejs/kit": "^1.30.4",
     "@sveltejs/package": "2.2.2",
     "@typescript-eslint/eslint-plugin": "6.5.0",
     "@typescript-eslint/parser": "6.5.0",
-    "algoliasearch": "4.19.1",
     "eslint": "8.48.0",
     "eslint-config-prettier": "9.0.0",
-    "eslint-plugin-svelte3": "4.0.0",
     "prettier": "3.0.3",
     "prettier-plugin-svelte": "3.0.3",
-    "shipjs": "0.26.3",
+    "shipjs": "^0.0.8",
     "svelte": "4.2.0",
     "svelte-check": "3.5.1",
     "tslib": "2.6.2",
     "typescript": "5.2.2",
-    "vite": "4.4.9",
+    "vite": "^4.5.3",
     "vitest": "0.34.3"
-  },
-  "peerDependencies": {
-    "algoliasearch": ">= 3.1 < 5",
-    "svelte": ">= 3 < 5",
-    "@sveltejs/kit": ">= 1 < 3"
   },
   "type": "module"
 }

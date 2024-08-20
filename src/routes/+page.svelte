@@ -18,60 +18,47 @@
     RangeInput,
     Stats,
   } from "$lib";
-  import algoliasearch from "algoliasearch/lite";
+
+  import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
 
   import Panel from "./Panel.svelte";
 
-  const searchClient = algoliasearch("latency", "6be0576ff61c053d5f9a3225e2a90f76");
+  const SEARCH_ENDPOINT = import.meta.env.VITE_SEARCH_ENDPOINT;
+  const MEILI_MASTER_KEY = import.meta.env.VITE_MEILI_MASTER_KEY;
+
+  const { searchClient } = instantMeiliSearch(
+  SEARCH_ENDPOINT,
+  MEILI_MASTER_KEY
+);
 </script>
 
 <svelte:head>
   <title>svelte-algolia-instantsearch | Demo</title>
 </svelte:head>
 
-<InstantSearch indexName="instant_search" routing {searchClient}>
+<InstantSearch indexName="drills" routing {searchClient}>
   <div class="Container">
     <div>
       <Panel header="Brands"
         ><RefinementList
-          attribute="brand"
+          attribute="userName"
           searchable
-          searchablePlaceholder="Search brands"
+          searchablePlaceholder="Search author"
           showMore
         /></Panel
       >
-      <Panel header="Hierarchy">
-        <HierarchicalMenu
-          attributes={[
-            "hierarchicalCategories.lvl0",
-            "hierarchicalCategories.lvl1",
-            "hierarchicalCategories.lvl2",
-          ]}
+      <Panel header="Tags">
+        <RefinementList
+          attribute="tags"
           showMore
         />
       </Panel>
-      <Panel header="Categories">
-        <Menu attribute="categories" showMore />
-      </Panel>
-      <Panel header="Price">
-        <RangeInput attribute="price" />
-      </Panel>
-      <Panel header="Free Shipping">
-        <ToggleRefinement attribute="free_shipping" label="Free shipping" />
-      </Panel>
-      <Panel header="Stats">
-        <Stats translations={{ rootElementText: (options) => `${options.areHitsSorted}` }} />
+      <Panel header="isPublic">
+        <ToggleRefinement attribute="isPublic" label="is Public" />
       </Panel>
     </div>
 
     <div class="Search">
-      <Breadcrumb
-        attributes={[
-          "hierarchicalCategories.lvl0",
-          "hierarchicalCategories.lvl1",
-          "hierarchicalCategories.lvl2",
-        ]}
-      />
 
       <SearchBox placeholder="Search" />
 
@@ -85,9 +72,7 @@
         />
         <SortBy
           items={[
-            { label: "Relevance", value: "instant_search" },
-            { label: "Price (asc)", value: "instant_search_price_asc" },
-            { label: "Price (desc)", value: "instant_search_price_desc" },
+            { label: "Name", value: "drills" },
           ]}
         />
       </div>
