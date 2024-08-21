@@ -1,4 +1,4 @@
-# svelte-algolia-instantsearch
+# svelte-meilisearch-instantsearch
 
 This library is a **community developed** wrapper around [instantsearch.js](https://github.com/algolia/instantsearch) for Svelte and Meilisearch, initially forked from [svelte-algolia-instantsearch](https://github.com/aymeric-giraudet/svelte-algolia-instantsearch) 
 
