@@ -12,9 +12,9 @@ It is meant to be an equivalent of [react-instantsearch-hooks-web](https://githu
 ## Installation
 
 ```sh
-yarn add svelte-meilisearch-instantsearch algoliasearch
+yarn add svelte-meilisearch-instantsearch
 # or
-npm install svelte-meilisearch-instantsearch algoliasearch
+npm install svelte-meilisearch-instantsearch
 ```
 
 ## Basic usage
