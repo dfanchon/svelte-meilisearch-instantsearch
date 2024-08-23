@@ -25,6 +25,14 @@
 
   let search: InstantSearch;
 
+  export function setUiState (state) {
+      search.setUiState(state);
+  };
+
+  export function refresh () {
+      search.refresh();
+  } 
+
   const serverContext = getServerContext();
 
   $: if (searchClient) {
@@ -70,7 +78,7 @@
     search.start();
 
     if ("addAlgoliaAgent" in searchClient) {
-      searchClient.addAlgoliaAgent("svelte-algolia-instantsearch", "1.0.0");
+      searchClient.addAlgoliaAgent("svelte-meilisearch-instantsearch", "1.0.0");
     }
 
     if (serverContext) {
@@ -78,6 +86,7 @@
         serverContext.notifyServer(search);
       });
     }
+
   }
 
   onDestroyClientSide(() => {

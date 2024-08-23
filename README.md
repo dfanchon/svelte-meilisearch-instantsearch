@@ -27,7 +27,7 @@ npm install svelte-meilisearch-instantsearch
     Hits,
     Pagination,
     HitsPerPage,
-  } from "svelte-algolia-instantsearch";
+  } from "svelte-meilisearch-instantsearch";
   import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
 
   import Panel from "./Panel.svelte";

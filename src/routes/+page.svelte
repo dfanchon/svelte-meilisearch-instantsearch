@@ -17,26 +17,36 @@
     Menu,
     RangeInput,
     Stats,
+    getInstantSearchContext
   } from "$lib";
-
+  import { onMount } from "svelte";
   import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
 
   import Panel from "./Panel.svelte";
-
-  const SEARCH_ENDPOINT = import.meta.env.VITE_MEILISEARCH_ENDPOINT;
-  const MEILI_MASTER_KEY = import.meta.env.VITE_MEILISEARCH_MASTER_KEY;
 
   const { searchClient } = instantMeiliSearch(
   'https://ms-adf78ae33284-106.lon.meilisearch.io',
   'a63da4928426f12639e19d62886f621130f3fa9ff3c7534c5d179f0f51c4f303'
 );
+
+let search;
+
+onMount(() => {
+  search.setUiState({
+    'steam-videogames': {
+      query: 'phones'
+    }
+  })
+  search.refresh();
+})
+
 </script>
 
 <svelte:head>
   <title>svelte-algolia-instantsearch | Demo</title>
 </svelte:head>
 
-<InstantSearch indexName="steam-videogames" routing {searchClient}>
+<InstantSearch bind:this={search} indexName="steam-videogames" routing {searchClient}>
   <div class="Container">
     <div>
       <Panel header="Brands"
@@ -75,7 +85,7 @@
         />
         <SortBy
           items={[
-            { label: "Name", value: "drills" },
+            { label: "Name", value: "name" },
           ]}
         />
       </div>
